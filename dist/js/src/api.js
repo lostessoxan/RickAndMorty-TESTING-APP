@@ -12,23 +12,25 @@ export const API_CHARACTER = "character";
 export const fetchCharacters = (keyword, page) => __awaiter(void 0, void 0, void 0, function* () {
     const baseUrl = API_BASE_URL + API_CHARACTER;
     const urlWithNoPage = keyword ? baseUrl + `?name=${keyword}` : baseUrl;
-    const url = page ? urlWithNoPage + `?page=${page}` : urlWithNoPage;
+    const url = page
+        ? urlWithNoPage + `${keyword ? "&" : "?"}page=${page}`
+        : urlWithNoPage;
     try {
+        console.log("URL", url);
         const response = yield fetch(url);
         if (!response.ok) {
-            throw new Error(`Something went wrong`);
+            return console.error(`Something went wrong`);
         }
         const data = yield response.json();
         const results = data.results;
         const pages = data.info.pages;
         const prevLink = data.info.prev;
-        let pageNumber;
-        if (!prevLink) {
-            pageNumber = 1;
-        }
-        else {
-            pageNumber = page;
-        }
+        let pageNumber = page || 1;
+        // if (!prevLink) {
+        //   pageNumber = 1;
+        // } else {
+        //   pageNumber = page;
+        // }
         console.log("fetchCHARACTERS", { results, pages, page: pageNumber });
         return { results, pages, pageNumber };
     }

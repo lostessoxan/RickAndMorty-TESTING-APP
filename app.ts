@@ -11,8 +11,13 @@ const paginationContainer = document.querySelector(".characters__pagination");
 
 const addPagesEventListeners = () => {
   pagesArray.forEach((page) => {
-    page.addEventListener("click", (event) => {
-      fetchData(+page.getAttribute("data-page")!);
+    page.addEventListener("click", () => {
+      const input = document.querySelector("[data-search-input]")!;
+      // fetchData(+page.getAttribute("data-page")!);
+      debouncedSearchCharacters(
+        (input as HTMLInputElement).value,
+        +page.getAttribute("data-page")!,
+      );
     });
   });
 };
@@ -71,12 +76,12 @@ const fetchData = async (page?: number) => {
   renderData(results, pages, +pageNumber);
 };
 
-const searchCharacters = async (keyword?: string) => {
+const searchCharacters = async (keyword?: string, page?: number) => {
   pagination.innerHTML += ``;
 
   // @ts-ignore
   const data: { results: CharacterProps[]; pages: number; pageNumber: number } =
-    await fetchCharacters(keyword);
+    await fetchCharacters(keyword, page);
 
   const { results, pages, pageNumber } = data;
 

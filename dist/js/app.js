@@ -17,8 +17,10 @@ const paginationContainer = document.querySelector(".characters__pagination");
 // ===================================
 const addPagesEventListeners = () => {
     pagesArray.forEach((page) => {
-        page.addEventListener("click", (event) => {
-            fetchData(+page.getAttribute("data-page"));
+        page.addEventListener("click", () => {
+            const input = document.querySelector("[data-search-input]");
+            // fetchData(+page.getAttribute("data-page")!);
+            debouncedSearchCharacters(input.value, +page.getAttribute("data-page"));
         });
     });
 };
@@ -60,10 +62,10 @@ const fetchData = (page) => __awaiter(void 0, void 0, void 0, function* () {
     const { results, pages, pageNumber } = data;
     renderData(results, pages, +pageNumber);
 });
-const searchCharacters = (keyword) => __awaiter(void 0, void 0, void 0, function* () {
+const searchCharacters = (keyword, page) => __awaiter(void 0, void 0, void 0, function* () {
     pagination.innerHTML += ``;
     // @ts-ignore
-    const data = yield fetchCharacters(keyword);
+    const data = yield fetchCharacters(keyword, page);
     const { results, pages, pageNumber } = data;
     renderData(results, pages, pageNumber);
 });

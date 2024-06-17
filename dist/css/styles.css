@@ -188,4 +188,19 @@ header .container nav ul li {
   color: var(--color-white);
 }
 
+.characters__filter {
+  background: var(--color-dark);
+  padding: 0.5rem;
+  width: max-content;
+  margin-bottom: 1rem;
+}
+.characters__filter select {
+  color: var(--color-white);
+  background: none;
+  font: inherit;
+}
+.characters__filter select option {
+  background: var(--color-dark);
+}
+
 /*# sourceMappingURL=styles.css.map */
