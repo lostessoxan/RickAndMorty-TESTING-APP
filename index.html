@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!--    styles-->
+    <link rel="stylesheet" href="./dist/css/styles.css" />
+
+    <title>Rick And Morty App</title>
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div class="container">
+          <a href="#" class="logo">LOGO</a>
+
+          <nav>
+            <ul>
+              <li>First</li>
+              <li>Second</li>
+              <li>Third</li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <section class="characters">
+        <div class="container">
+          <h2 class="section-title">Characters</h2>
+
+          <div class="control" data-search>
+            <label for="search-input">Find a Character</label>
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search.."
+              data-search-input
+            />
+          </div>
+
+          <ul class="characters__list" data-characters>
+            No characters yet
+          </ul>
+
+          <div class="characters__pagination">
+            <ul data-pagination></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!--  script-->
+    <script type="module" src="./dist/js/app.js"></script>
+  </body>
+</html>
